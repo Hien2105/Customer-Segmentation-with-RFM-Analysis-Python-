@@ -3,11 +3,22 @@
 SuperStore, a global retailer, plans holiday marketing campaigns to reward loyal customers and engage potential ones. Due to a large dataset, manual segmentation is no longer feasible, so the Marketing Department seeks support from the Data Team. The Marketing Director proposes using the RFM model, which was previously managed in Excel but now requires a scalable Python-based solution for efficient customer segmentation and targeted campaigns.
 
 ## 2. Task
-Based on the situation and the needs given, i developed an automated RFM segmentation model using Python to classify customers efficiently and provide actionable insights for targeted marketing campaigns.
+Based on the given situation and needs, I developed an automated RFM segmentation model using Python to efficiently classify customers and provide actionable insights for targeted marketing campaigns.
 
 ## 3. Action
-<details><summary><strong>Import file</strong></summary>
+## 3.1 Action Breakdown
+| Step | Action Description                                                                                       |
+|------|----------------------------------------------------------------------------------------------------------|
+| 1    | Prepare the dataset to ensure it is compatible with the RFM model.                                       |
+| 2    | Define the calculation methods for R (Recency), F (Frequency), and M (Monetary) scores for each customer. |
+|      | *Note:* The recency score is calculated using data up to 31/12/2011.                                     |
+| 3    | Assign scores to each R, F, and M value using a 1 to 5 scale.                                            |
+| 4    | Group customers into segments based on their RFM scores using a classification table.                    |
+| 5    | Visualize the number of customers in each segment across various dimensions for better insights.         |
 
+## 3.2 Python Code
+<details><summary><strong>1. Prepare the dataset to ensure it is compatible with the RFM model.</strong></summary>
+ 
 ```python
 import numpy as np
 import pandas as pd
@@ -20,6 +31,7 @@ print(ecommerce_retail_data.head())
 print(' ')
 print(ecommerce_retail_segment.head())
 ```
+
  output
  ```
  InvoiceNo StockCode                          Description  Quantity         InvoiceDate  UnitPrice  CustomerID         Country
@@ -36,8 +48,6 @@ print(ecommerce_retail_segment.head())
    3       New Customers                  512, 511, 422, 421, 412, 411, 311
    4           Promising  525, 524, 523, 522, 521, 515, 514, 513, 425,42...
    ```
-</details><br>
-<details><summary><strong>1. Prepare the dataset suitable for the RFM model.</strong></summary>
  
    ```python
    # Check Duplicate
@@ -142,11 +152,9 @@ ecommerce_retail_segment data type
    max        26.000000            2011-12-09 12:50:00       7.460000
    std         6.792468                            NaN       1.533964
    ```
-</details><br>
-<details><summary><strong>2. Define and calculate the R, F, and M scores for each customer.</strong></summary>
- <br>
-   Note: The reference date for the R score is December 31, 2011.
-      
+</details>
+<details><summary><strong>2. Define the calculation methods for R (Recency), F (Frequency), and M (Monetary) scores for each customer.</strong></summary>
+ 
    ```python
    #Caculate cusotmer spend
    ecommerce_retail_data['Spend'] = ecommerce_retail_data['Quantity'] * ecommerce_retail_data['UnitPrice']
@@ -174,8 +182,8 @@ ecommerce_retail_segment data type
    
    [3536 rows x 4 columns]
    ```
-</details><br>
-<details><summary><strong>3. Develop a scoring method with a scale of 1 to 5.</strong></summary>
+</details>
+<details><summary><strong>3. Assign scores to each R, F, and M value using a 1 to 5 scale.</strong></summary>
  <br>
 Suggestion: Use the quintile method in statistics.
    
@@ -236,8 +244,8 @@ CustomerID  Recency  Frequency  Monetary  Recency_Score  Frequency_Score  Moneta
 
 [3536 rows x 8 columns]
 ```
-</details><br>
-<details><summary><strong>4. Use the classification table to group customers into segments.</strong></summary>
+</details>
+<details><summary><strong>4. Group customers into segments based on their RFM scores using a classification table.</strong></summary>
 
 ```python
 #Split the RFM Score column in ecommerce_retail_segment
@@ -284,8 +292,8 @@ Segment  RFM Score
 
 [3536 rows x 9 columns]
 ```
-</details><br>
-<details><summary><strong>5. Visualize the number of segments across different data dimensions.</strong></summary>
+</details>
+<details><summary><strong>5. Visualize the number of customers in each segment across various dimensions for better insights.</strong></summary>
  
 ```python
 #Create Segment_list for sorting 
@@ -373,19 +381,18 @@ plt.show()
 ```
 output
 
-![image](https://github.com/user-attachments/assets/e6a983d9-2991-41f6-b8ba-97b00a1d9bc3)
-![image](https://github.com/user-attachments/assets/8a18eb71-8159-49f1-9e05-6b28195dd715)
+![](https://github.com/Hien2105/Project-s-photo/blob/main/Python%201.png)
+![](https://github.com/Hien2105/Project-s-photo/blob/main/Python%202.png)
 
-</details><br>
-<details><summary><strong>6. Analyze the company’s current situation and provide recommendations to the Marketing team.</strong></summary>
-<br>
-Customer Segments Overview:
- 
+</details>
+
+## 4. Result (Key Insights & Recommendations)
+### Customer Segments Overview
 - Champions: 16.40% of customers
 - At Risk: 12.10% of customers
 - Hibernating: 17.36% of customers
  
-Key Insights:
+### Key Insights
 
 - Despite having valuable 'Champions' customers, the high customer loss rate suggests a need for focused strategies targeting 'At Risk' customers.
 - The significant 'Hibernating' segment indicates a high churn rate, calling for a review of customer care and retention strategies.
@@ -393,19 +400,17 @@ Key Insights:
 - Customer Appreciation: Focus on 'Champions', 'Loyal', and 'Potential Loyalist' customers.
 - Customer Acquisition: Prioritize 'New Customers' and 'Promising' segments for potential growth.
 
-Further Recommendations:
+### Recommendations
 
 - Other customer segments not mentioned should also be approached with tailored campaigns and care strategies to mitigate churn.
 
- </details><br>
-<details><summary><strong>7. Suggest to the Marketing and Sales teams which of the three metrics (R, F, or M) they should focus on the most, given the retail business model of Superstore.</strong></summary>
- <br>
+
 In Superstore's retail model, the metrics to prioritize the most are Recency (R) and Frequency (F), based on the following points:
 
 - Recency (R): The average recency for 'Champions' is 36 days, and for 'Loyal' customers, it is 67 days, indicating they return within 1-2 months. This shows that customers who make purchases more recently are more likely to be engaged and valuable.
   
 - Frequency (F): 'Champions' make 93 purchases, and 'Loyal' customers make around 73 purchases within 1-2 months. High frequency of purchases suggests strong engagement and loyalty.
 
-Since customers with low Recency (recently active) and high Frequency (frequent purchases) contribute significantly to the company's value, focusing on these two metrics for segmentation will help identify and retain the most valuable customers.
+→ Since customers with low Recency (recently active) and high Frequency (frequent purchases) contribute significantly to the company's value, focusing on these two metrics for segmentation will help identify and retain the most valuable customers.
 
 
