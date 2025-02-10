@@ -1,12 +1,11 @@
 # Customer Segmentation with RFM Analysis (Python)
-Context:
-<br>
-- SuperStore is a global retail company, which means it has a vast number of customers.During the Christmas and New Year seasons, the Marketing Department plans to launch marketing campaigns to express gratitude to loyal customers who have supported the company over the years. 
-- They also aim to target potential customers who might become loyal ones. However, the Marketing Department has not yet segmented this year's customers due to the large dataset, making it impossible to handle manually as in previous years. Therefore, they have asked the Data Analytics Department to assist in solving a segmentation problem to classify customers into groups, enabling the deployment of tailored marketing programs for each group. The Marketing Director has proposed using the RFM model. 
-- Previously, when the company was smaller, the team could perform segmentation using Excel. However, given the current large volume of data, they hope the Data Team can develop a workflow for segmentation using Python programming.
+## 1. Situation
+SuperStore, a global retailer, plans holiday marketing campaigns to reward loyal customers and engage potential ones. Due to a large dataset, manual segmentation is no longer feasible, so the Marketing Department seeks support from the Data Team. The Marketing Director proposes using the RFM model, which was previously managed in Excel but now requires a scalable Python-based solution for efficient customer segmentation and targeted campaigns.
 
-Proposed Approach:
-<br>
+## 2. Task
+Based on the situation and the needs given, i developed an automated RFM segmentation model using Python to classify customers efficiently and provide actionable insights for targeted marketing campaigns.
+
+## 3. Action
 <details><summary><strong>Import file</strong></summary>
 
 ```python
