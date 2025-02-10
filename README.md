@@ -1,4 +1,4 @@
-# Python Project: RFM Analysis
+# Customer Segmentation with RFM Analysis (Python)
 Context:
 <br>
 - SuperStore is a global retail company, which means it has a vast number of customers.During the Christmas and New Year seasons, the Marketing Department plans to launch marketing campaigns to express gratitude to loyal customers who have supported the company over the years. 
